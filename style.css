@@ -70,3 +70,10 @@ h2 {
   width: 100%;
   border-radius: 3px;
 }
+
+.setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+}
