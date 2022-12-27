@@ -7,6 +7,21 @@ const symbolsEl = document.getElementById("symbols");
 const generateBtn = document.getElementById("generate");
 const clipboardEl = document.getElementById("clipboard");
 
+// clip board event listner
+clipboardEl.addEventListener("click", (e) => {
+  const textarea = document.createElement("textarea");
+  const password = resultEl.innerText;
+  if (!password) {
+    return;
+  }
+  textarea.value = password;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  textarea.remove();
+  alert("pass copied");
+});
+
 generateBtn.addEventListener("click", (e) => {
   const length = +lengthEl.value;
   const hasLower = lowercaseEl.checked;
