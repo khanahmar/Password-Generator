@@ -27,8 +27,23 @@ generateBtn.addEventListener("click", (e) => {
 function generatePassword(lower, upper, symbol, number, length) {
   let generatedPassword = "";
   const typesCount = lower + upper + symbol + number;
-  console.log(upper + true);
-  console.log(typesCount);
+  const typesArr = [{ lower }, { upper }, { number }, { symbol }].filter(
+    (item) => Object.values(item)[0]
+  );
+  if (typesCount === 0) {
+    return "";
+  }
+
+  for (let i = 0; i < length; i += typesCount) {
+    typesArr.forEach((type) => {
+      const funcName = Object.keys(type)[0];
+      generatedPassword += randomFunc[funcName]();
+    });
+  }
+  console.log(generatedPassword);
+  const finalPassword = generatedPassword.slice(0, length);
+
+  return finalPassword;
 }
 
 const randomFunc = {
@@ -56,9 +71,3 @@ function getRandomSymbol() {
   const symbols = "!@#$^&*(){}[]=<>/,.";
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
-
-getRandomLower();
-getRandomUpper();
-getRandomNumber();
-getRandomSymbol();
-console.log(randomFunc);
